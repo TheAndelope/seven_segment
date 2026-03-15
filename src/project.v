@@ -16,11 +16,32 @@ module tt_um_seven_seg (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-  // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
-  assign uio_out = 0;
-  assign uio_oe  = 0;
+  wire tick;
+  wire [4:0] seconds;
 
+  clock_divider clkdiv(
+    .clk(clk),
+    .rst_n(rst_n),
+    .tick(tick)
+  );
+
+  second_counter seccoun(
+    .clk(clk),
+    .rst_n(rst_n),
+    .tick(tick),
+    .seconds(seconds)
+  );
+
+  wire [3:0] num = seconds % 10;
+
+  display dis(
+    .num(num),
+    .seg(uo_out[7])
+  );
+
+  assign uo_out[7] = 1'b0;
+  assign uio_out = 8'b0;
+  assign uio_oe  = 8'b0;
   // List all unused inputs to prevent warnings
   wire _unused = &{ena, clk, rst_n, 1'b0};
 

@@ -15,6 +15,7 @@ module display (
             4'd7: seg = 7'b1010010;
             4'd8: seg = 7'b1111111;
             4'd9: seg = 7'b1111011;
+            default: ;
         endcase
     end
 

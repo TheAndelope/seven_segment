@@ -32,7 +32,7 @@ module tt_um_seven_seg (
     .seconds(seconds)
   );
 
-  wire [3:0] num = seconds % 10;
+  wire [3:0] num = seconds[3:0] % 10;
 
   display dis(
     .num(num),
@@ -40,8 +40,9 @@ module tt_um_seven_seg (
   );
 
   assign uo_out[7] = 1'b0;
-
+  assign uio_out = 8'b0;
+  assign uio_oe  = 8'b0;
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, ui_in, uio_in, uio_out, uio_oe, 1'b0};
+  wire _unused = &{ena, ui_in, uio_in, 1'b0};
 
 endmodule

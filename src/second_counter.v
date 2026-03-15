@@ -2,7 +2,7 @@ module second_counter(
     input clk,
     input rst_n,
     input tick,
-    output reg [4:0] seconds
+    output reg [3:0] seconds
 );
 
     always @(posedge clk or negedge rst_n) begin
@@ -10,7 +10,7 @@ module second_counter(
             seconds <= 0;
         end else begin 
             if(tick) begin 
-                if(seconds == 29) begin
+                if(seconds == 9) begin
                     seconds <= 0;
                 end else begin
                     seconds <= seconds + 1;

@@ -17,7 +17,7 @@ module tt_um_seven_seg (
 );
 
   wire tick;
-  wire [4:0] seconds;
+  wire [3:0] seconds;
 
   clock_divider clkdiv(
     .clk(clk),
@@ -32,7 +32,7 @@ module tt_um_seven_seg (
     .seconds(seconds)
   );
 
-  wire [3:0] num = seconds[3:0] % 10;
+  wire [3:0] num = seconds % 10;
 
   display dis(
     .num(num),

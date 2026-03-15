@@ -36,7 +36,7 @@ module tt_um_seven_seg (
 
   display dis(
     .num(num),
-    .seg(uo_out[7])
+    .seg(uo_out[6:0])
   );
 
   assign uo_out[7] = 1'b0;

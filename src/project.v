@@ -40,9 +40,8 @@ module tt_um_seven_seg (
   );
 
   assign uo_out[7] = 1'b0;
-  assign uio_out = 8'b0;
-  assign uio_oe  = 8'b0;
+
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, clk, rst_n, 1'b0};
+  wire _unused = &{ena, ui_in, uio_in, uio_out, uio_oe, 1'b0};
 
 endmodule
